@@ -6,11 +6,11 @@ const TodoList = ({todos, deleteTodo,completeTodo}) => {
   return (
     <>
 
-          <ul>
+          <div className='overflow-hidden '>
           {todos.map((item) => (
             <TodoItem key={item.id} item={item} deleteTodo={deleteTodo} completeTodo={completeTodo}/>
             ))}
-          </ul>
+          </div>
 
     </>
   )
