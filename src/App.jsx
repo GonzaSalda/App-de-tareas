@@ -8,38 +8,37 @@ import TodoSearch from "./components/TodoSearch"
 const App = () => {
 
   const arrayTodos = [
-    {
-        text:"Practicar react",
-        id: 1,
-        completed:true,
-    },
-    {
-        text:"Practicar JS",
-        id: 2,
-        completed:false,
-    }
   ]
   
   const[todos, setTodos] = useState(arrayTodos)
-  
-  console.log(todos)
-  
+console.log(todos)
+
   const addTodo = (newTodo) =>{
     setTodos([...todos, newTodo])
+  }
+
+  const deleteTodo = (id) =>{
+    setTodos(todos.filter((item=> item.id !== id)))
+  }
+
+  const completeTodo = (id) =>{
+    const newArray = todos.map((item) => item.id === id  ? {...item , completed:!item.completed} : item)
+    setTodos(newArray)
+    
   }
 
   return (
     <>
 
 
-      <main className="relative container mx-auto  flex flex-col h-[500px] w-[500px] gap-5  justify-center items-center ">
+      <main className="relative container mx-auto  flex flex-col h-screen w-full gap-5  justify-center items-center ">
         <h1 className="text-5xl font-semibold text-orange-300">App de tareas</h1>
         <TodoCreate addTodo={addTodo} />
 
         <TodoCounter />
         <TodoSearch />
 
-        <TodoList todos={todos} />
+        <TodoList todos={todos} deleteTodo={deleteTodo} completeTodo={completeTodo}/>
 
       </main>
 
