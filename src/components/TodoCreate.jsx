@@ -68,7 +68,7 @@ const TodoCreate = ({addTodo}) => {
         </>)}
 
 
-      <button className={`absolute bottom-0 right-0 translate-x-11 border-2 rounded-full w-16 h-16 border-gray-200 flex items-center justify-center text-5xl pb-2 ${isTodoOpen && "hidden"}`} onClick={handleOpen}>+</button>
+      <button className={`absolute bottom-10  right-0 translate-x-1 border-2 rounded-full w-16 h-16 border-gray-200 flex items-center justify-center text-5xl pb-2 ${isTodoOpen && "hidden"}`} onClick={handleOpen}>+</button>
     </>
   )
 }
