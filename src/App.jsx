@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import TodoCounter from "./components/TodoCounter"
 import TodoCreate from "./components/TodoCreate"
 import TodoFilter from "./components/TodoFilter"
@@ -7,12 +7,18 @@ import TodoSearch from "./components/TodoSearch"
 
 
 const App = () => {
+  
+  const initialStateTodos = JSON.parse(localStorage.getItem('todos')) || []
 
-  const arrayTodos = [
-  ]
+  const [todos, setTodos] = useState(initialStateTodos)
+
+
+  useEffect(()=>{
+    localStorage.setItem('todos', JSON.stringify(todos))
+  },[todos])
 
   const [searchValue, setSearchValue]= useState('')
-  const [todos, setTodos] = useState(arrayTodos)
+  
 
 
   let searchedTodos = []
@@ -60,6 +66,8 @@ const App = () => {
     }
   }
 
+
+  
   const countCompletedTodos = todos.filter((item) => !!item.completed).length
   
 
@@ -75,6 +83,8 @@ const App = () => {
         <TodoSearch  searchValue={searchValue} setSearchValue={setSearchValue}/>
 
         <TodoList todos={filteredTodos()} deleteTodo={deleteTodo} completeTodo={completeTodo} />
+
+
         <TodoFilter changeFilter={changeFilter} />
       </main>
 
